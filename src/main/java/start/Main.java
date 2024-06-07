@@ -1,8 +1,14 @@
 package start;
 
 import utility.FileUtility;
+import utility.StringUtility;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -15,28 +21,46 @@ import model.Stagista;
 public class Main {
 
 	public static void main(String[] args) {
-
+		
+		Stagista io = null;
+		ArrayList <Stagista>listaStagisti;
+		
 		final String FILE_NAME = "user.json";
 		byte[] dati = FileUtility.getFileFromInternalResources(FILE_NAME);
 
-		String str = new String(dati);
-		Gson json = new Gson();
-		Stagista io = new Stagista("Marco","Ferrante","M");
+		String json = new String(dati);
+		String xml = null;
 		
-		ArrayList<Stagista> stagisti = new ArrayList<Stagista>();
+		listaStagisti = StringUtility.fromJson(json);
 		
-		JsonObject jsonObject = JsonParser.parseString(str).getAsJsonObject();
-
-        // Ottenere l'array di utenti
-        JsonArray jsonArray = jsonObject.getAsJsonArray("utenti");
-
-		for(JsonElement jsonElement: jsonArray) {
-
-			stagisti.add(json.fromJson(jsonElement, Stagista.class));
-			if(stagisti.getLast().equals(io)) {
-				System.out.println("eccomi");
+		for(Stagista stagista: listaStagisti) {
+			String nome = stagista.getNome().toLowerCase();
+			
+			if(nome.equals("marco")) {
+				io = stagista;
+				io.setEta(25);
+				
 			}
 		}
+		
+		
+		
+
+		System.out.println("****************  Il file JSON generato è:  ***********");
+		System.out.println(StringUtility.toJson(io));
+		
+		
+        try {
+    		System.out.println("\n****************  Il file XML  generato è:  ***********");
+			System.out.println(StringUtility.toXML(io));
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+		 
+		
+		
+		
+		
 		
 		
 		
