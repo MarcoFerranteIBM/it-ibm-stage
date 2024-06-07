@@ -66,4 +66,22 @@ public class StringUtility {
 
 	}
 
+	public static Stagista fromXML(String s) throws JAXBException {
+		
+		
+        // Crea il contesto JAXB
+        JAXBContext jaxbContext = JAXBContext.newInstance(Stagista.class);
+
+        // Crea l'unmarshaller
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+
+        StringReader reader = new StringReader(s);
+        // Converte l'XML in un oggetto Java 
+        Stagista stagista =  (Stagista) unmarshaller.unmarshal(reader);
+         
+        
+        
+		return stagista;
+
+	}
 }

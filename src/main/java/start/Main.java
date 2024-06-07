@@ -39,27 +39,25 @@ public class Main {
 			if(nome.equals("marco")) {
 				io = stagista;
 				io.setEta(25);
-				
+				try {
+		        	xml = StringUtility.toXML(io);
+		    		
+				} catch (JAXBException e) {
+					e.printStackTrace();
+				}
+				System.out.println("\n****************  Il file XML generato per il nome proprio è:  ***********");
+				System.out.println(xml);
 			}
 		}
 		
 		
+		json = StringUtility.toJson(io);
 		
+        
+        
 
 		System.out.println("****************  Il file JSON generato è:  ***********");
-		System.out.println(StringUtility.toJson(io));
-		
-		
-        try {
-    		System.out.println("\n****************  Il file XML  generato è:  ***********");
-			System.out.println(StringUtility.toXML(io));
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
-		 
-		
-		
-		
+		System.out.println(json);
 		
 		
 		
