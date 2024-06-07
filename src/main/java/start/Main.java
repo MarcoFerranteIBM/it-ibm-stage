@@ -2,20 +2,8 @@ package start;
 
 import utility.FileUtility;
 import utility.StringUtility;
-
-import java.io.StringWriter;
 import java.util.ArrayList;
-
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 import model.Stagista;
 
 public class Main {
@@ -45,24 +33,22 @@ public class Main {
 				} catch (JAXBException e) {
 					e.printStackTrace();
 				}
-				System.out.println("\n****************  Il file XML generato per il nome proprio è:  ***********");
+				System.out.println("\n****************  Il file XML generato è:  ***********");
 				System.out.println(xml);
 			}
-		}
-		
+		}		
 		
 		json = StringUtility.toJson(io);
-		
-        
-        
-
 		System.out.println("****************  Il file JSON generato è:  ***********");
 		System.out.println(json);
 		
+		/*try {
+			//System.out.print(StringUtility.fromXML(xml));
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 		
-		
-		
-
 	}
 
 }
